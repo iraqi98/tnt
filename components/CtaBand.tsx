@@ -1,13 +1,14 @@
 "use client";
 
 import { useLanguage } from "@/lib/language-context";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export default function CtaBand() {
   const { lang } = useLanguage();
 
   return (
     <section className="cta-band" style={{ borderBottom: 0 }}>
-      <div className="wrap">
+      <ScrollReveal className="wrap">
         {lang === "ar" ? (
           <h2 lang="ar">خلي سيارتك تنفحص هسه</h2>
         ) : (
@@ -31,7 +32,7 @@ export default function CtaBand() {
             {lang === "ar" ? "حجز عبر واتساب" : "Book on WhatsApp"}
           </a>
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 }

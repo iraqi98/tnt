@@ -12,6 +12,7 @@ import {
   FuelIcon,
 } from "@/components/icons/ServiceIcons";
 import type { ComponentType } from "react";
+import ScrollReveal from "@/components/ScrollReveal";
 
 interface Service {
   Icon: ComponentType;
@@ -101,25 +102,25 @@ export default function Services() {
   return (
     <section id="services">
       <div className="wrap">
-        <div className="section-head">
+        <ScrollReveal className="section-head">
           <span className="eyebrow">{lang === "ar" ? "الخدمات" : "Services"}</span>
           {lang === "ar" ? (
             <h2 lang="ar">كل شي تحتاجه سيارتك الأمريكية تحت سقف وحد</h2>
           ) : (
             <h2 lang="en">Everything your American car needs, under one roof</h2>
           )}
-        </div>
+        </ScrollReveal>
 
         <div className="services-grid">
-          {services.map(({ Icon, code, title, desc }) => (
-            <div className="service" key={code}>
+          {services.map(({ Icon, code, title, desc }, i) => (
+            <ScrollReveal className="service" index={i} key={code}>
               <div className="icon">
                 <Icon />
               </div>
               <span className="code">{code}</span>
               <h3>{title[lang]}</h3>
               <p>{desc[lang]}</p>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
       </div>

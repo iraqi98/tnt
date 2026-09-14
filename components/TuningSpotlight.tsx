@@ -2,6 +2,7 @@
 
 import { useLanguage } from "@/lib/language-context";
 import { DynoChart } from "@/components/icons/Gauges";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const listItems: { ar: string; en: string }[] = [
   {
@@ -24,7 +25,7 @@ export default function TuningSpotlight() {
   return (
     <section id="tuning">
       <div className="wrap spotlight">
-        <div className="spotlight-copy">
+        <ScrollReveal className="spotlight-copy" index={0}>
           <span className="eyebrow">{lang === "ar" ? "البرمجة" : "Tuning"}</span>
           {lang === "ar" ? (
             <h2 lang="ar">غرفة البرمجة — وين تنبض السيارة بأداء ثاني</h2>
@@ -48,16 +49,16 @@ export default function TuningSpotlight() {
               <li>{item[lang]}</li>
             </ul>
           ))}
-        </div>
+        </ScrollReveal>
 
-        <div className="dyno">
+        <ScrollReveal className="dyno" index={1}>
           <div className="dyno-head">
             <span className="t">
               {lang === "ar" ? "مثال توضيحي" : "Illustrative example"}
             </span>
           </div>
           <DynoChart />
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

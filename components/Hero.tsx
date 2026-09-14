@@ -72,10 +72,6 @@ export default function Hero() {
   return (
     <header className="hero wrap">
       <div>
-        <span className="kicker">
-          {lang === "ar" ? "بغداد — حي حطين" : "Baghdad — Hai Hutteen"}
-        </span>
-
         {lang === "ar" ? (
           <h1 lang="ar">
             صيانة أمريكية بدقّة <span>تحسّها</span>

@@ -31,8 +31,13 @@ function toFraction(value: number, domainMin: number, domainMax: number) {
   return (value - domainMin) / (domainMax - domainMin);
 }
 
+function getPrefersReducedMotion() {
+  if (typeof window === "undefined") return false;
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
 export default function DiagnosticPanel({ lang }: { lang: "ar" | "en" }) {
-  const [reducedMotion, setReducedMotion] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(getPrefersReducedMotion);
   const [rpm, setRpm] = useState(RPM_DEFAULT);
   const [temp, setTemp] = useState(TEMP_DEFAULT);
 
@@ -52,7 +57,6 @@ export default function DiagnosticPanel({ lang }: { lang: "ar" | "en" }) {
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReducedMotion(mq.matches);
     const handleChange = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
     mq.addEventListener("change", handleChange);
     return () => mq.removeEventListener("change", handleChange);

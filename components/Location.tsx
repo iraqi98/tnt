@@ -5,8 +5,13 @@ import {
   LocationIcon,
   PhoneIcon,
   InstagramIcon,
-  MapPinIcon,
 } from "@/components/icons/ServiceIcons";
+import ScrollReveal from "@/components/ScrollReveal";
+
+const MAP_EMBED_SRC =
+  "https://www.google.com/maps?q=Kaneesa+Street+Hai+Hutteen+Baghdad+TNT+Garage&output=embed";
+const MAP_SEARCH_URL =
+  "https://www.google.com/maps/search/?api=1&query=Kaneesa+Street+Hai+Hutteen+Baghdad+TNT+Garage";
 
 export default function Location() {
   const { lang } = useLanguage();
@@ -14,7 +19,7 @@ export default function Location() {
   return (
     <section id="visit">
       <div className="wrap">
-        <div className="section-head">
+        <ScrollReveal className="section-head">
           <span className="eyebrow">
             {lang === "ar" ? "الموقع والتواصل" : "Visit & Contact"}
           </span>
@@ -23,10 +28,10 @@ export default function Location() {
           ) : (
             <h2 lang="en">Ready when you bring the car in</h2>
           )}
-        </div>
+        </ScrollReveal>
 
         <div className="loc-grid">
-          <div className="loc-cell">
+          <ScrollReveal className="loc-cell" index={0}>
             <h3>{lang === "ar" ? "التفاصيل" : "Details"}</h3>
 
             <div className="loc-row">
@@ -65,26 +70,33 @@ export default function Location() {
                 <small>{lang === "ar" ? "انستغرام" : "Instagram"}</small>
               </span>
             </div>
-          </div>
+          </ScrollReveal>
 
-          <a
-            className="map-mark"
-            href="https://www.google.com/maps/search/?api=1&query=Kaneesa+Street+Hai+Hutteen+Baghdad+TNT+Garage"
-            target="_blank"
-            rel="noopener"
-            style={{ textDecoration: "none" }}
-          >
-            <div style={{ textAlign: "center" }}>
-              <div className="map-pin" style={{ marginInline: "auto" }}>
-                <MapPinIcon />
-              </div>
-              <div className="map-link">
-                {lang === "ar"
-                  ? "فتح الموقع في خرائط جوجل"
-                  : "Open location in Google Maps"}
-              </div>
-            </div>
-          </a>
+          <ScrollReveal className="map-mark" index={1}>
+            <iframe
+              src={MAP_EMBED_SRC}
+              width="100%"
+              height="100%"
+              style={{ border: 0, minHeight: 220, display: "block" }}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title={
+                lang === "ar"
+                  ? "خريطة موقع TNT جراج"
+                  : "Map of TNT Garage location"
+              }
+            />
+            <a
+              className="map-overlay-link"
+              href={MAP_SEARCH_URL}
+              target="_blank"
+              rel="noopener"
+            >
+              {lang === "ar"
+                ? "فتح الموقع في خرائط جوجل"
+                : "Open location in Google Maps"}
+            </a>
+          </ScrollReveal>
         </div>
       </div>
     </section>
